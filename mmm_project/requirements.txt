@@ -1,4 +1,0 @@
-numpy>=1.23
-pandas>=1.5
-pymc>=5.0
-flask==2.3.3
