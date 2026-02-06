@@ -8,6 +8,7 @@ import pymc as pm
 import pytensor
 import pytensor.tensor as pt
 from pytensor.scan import scan
+import arviz as az
 
 from mmm.data import MMMData
 from mmm.utils import geometric_adstock_np, hill_np
@@ -207,3 +208,16 @@ class BayesianMMM:
         rmse = float(np.sqrt(np.mean((d.y_z[test_idx] - mu[test_idx]) ** 2)))
         mae = float(np.mean(np.abs(d.y_z[test_idx] - mu[test_idx])))
         return rmse, mae
+
+    # ----------------------------
+    # Save and Load
+    # ----------------------------
+    def save(self, filepath: str):
+        """Save the fitted model's inference data."""
+        if self.idata is None:
+            raise RuntimeError("No fitted model to save. Call fit() first.")
+        self.idata.to_netcdf(filepath)
+
+    def load(self, filepath: str):
+        """Load a previously saved model."""
+        self.idata = az.from_netcdf(filepath)

@@ -5,13 +5,14 @@ from mmm.model import BayesianMMM
 
 def main():
     channels = ["TikTok", "Facebook", "Google Ads"]
-    data = MMMData.from_csv("./mmm/synthetic_mmm_data.csv", channels)
+    data = MMMData.from_csv("./synthetic_mmm_data.csv", channels)
 
     train_idx, _ = data.split(test_frac=0.2)
 
     mmm = BayesianMMM(data, train_idx=train_idx)
     mmm.build_model()
     mmm.fit()
+    mmm.save("mmm_model.nc")
 
     out, summary = mmm.compute_contributions_and_roas()
     print(summary.to_string(index=False))
