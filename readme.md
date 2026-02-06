@@ -69,27 +69,20 @@ The full workflow is containerized using **Docker**, enabling reproducible execu
 Key aspects include:
 
 - Python environment and dependencies defined in `requirements.txt`  
-- Application code and model artifacts packaged into a single image  
-- The app exposing results 
+- Running code and model artifacts packaged into a single image  
+- The app shows results 
 
 ---
 
-## Build and Push the Docker Image
+## Run the Docker Image
 
-To build and publish the Docker image locally:
 
 ```bash
-# Build the image
-docker build -t mmm-app2 .
+# Pull the image from Docker Hub
+docker pull qzhou333/mmm-app2:latest
 
-# Authenticate with Docker Hub
-docker login
-
-# Tag the image
-docker tag mmm-app2 qzhou333/mmm-app2:latest
-
-# Push to Docker Hub
-docker push qzhou333/mmm-app2:latest
+# Run the Docker container
+docker run qzhou333/mmm-app2:latest
 
 # References
 
