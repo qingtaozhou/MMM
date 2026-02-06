@@ -74,10 +74,20 @@ Key aspects include:
 
 ---
 
-## Run the Docker Image
-
-
+## Build, Push and Run the Docker Image
 ```bash
+# Build the image
+docker build -t mmm-app2 .
+
+# Authenticate with Docker Hub
+docker login
+
+# Tag the image
+docker tag mmm-app2 qzhou333/mmm-app2:latest
+
+# Push to Docker Hub
+docker push qzhou333/mmm-app2:latest
+
 # Pull the image from Docker Hub
 docker pull qzhou333/mmm-app2:latest
 
